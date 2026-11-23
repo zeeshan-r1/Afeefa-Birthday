@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Happy Birthday Afeefa 🎀</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html,
+    body {
+      height: 100%
+    }
+
+    body {
+      font-family: "Comic Sans MS", "Trebuchet MS", sans-serif;
+      background: linear-gradient(160deg, #ffd6e8, #ffb3d1, #ff9ec7);
+      color: #7a1850;
+      overflow-x: hidden
+    }
+
+    .page {
+      display: none;
+      min-height: 100dvh;
+      padding: 24px 16px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 22px
+    }
+
+    .page.active {
+      display: flex;
+      animation: pop .5s ease
+    }
+
+    @keyframes pop {
+      from {
+        opacity: 0;
+        transform: scale(.85)
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1)
+      }
+    }
+
+    h1 {
+      font-size: clamp(1.6rem, 6vw, 3rem);
+      line-height: 1.25
+    }
+
+    p {
+      font-size: clamp(1rem, 3.5vw, 1.4rem);
+      max-width: 600px
+    }
+
+    .card {
+      background: rgba(255, 255, 255, .75);
+      border-radius: 28px;
+      padding: 28px 20px;
+      max-width: 640px;
+      width: 100%;
+      box-shadow: 0 10px 30px rgba(190, 40, 110, .25)
+    }
+
+    .btns {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center
+    }
+
+    button {
+      font-family: inherit;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      background: #ff4f9a;
+      color: #fff;
+      box-shadow: 0 6px 14px rgba(190, 40, 110, .35);
+      transition: transform .15s
+    }
+
+    button:active {
+      transform: scale(.94)
+    }
+
+    .big {
+      font-size: clamp(1.4rem, 6vw, 2.2rem);
+      padding: 18px 44px
+    }
+
+    .med {
+      font-size: 1.1rem;
+      padding: 12px 26px
+    }
+
+    .small {
+      font-size: .65rem;
+      padding: 5px 10px;
+      background: #c98aa8
+    }
+
+    .opt {
+      font-size: 1.2rem;
+      padding: 14px 28px;
+      min-width: 140px
+    }
+
+    .cake {
+      font-size: clamp(5rem, 22vw, 9rem);
+      animation: bounce 1.4s infinite
+    }
+
+    @keyframes bounce {
+      50% {
+        transform: translateY(-14px)
+      }
+    }
+
+    #sad {
+      position: fixed;
+      inset: 0;
+      background: rgba(122, 24, 80, .55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+      padding: 16px
+    }
+
+    #sad.show {
+      display: flex
+    }
+
+    #sad .box {
+      background: #fff0f7;
+      border-radius: 28px;
+      padding: 28px 22px;
+      text-align: center;
+      max-width: 380px;
+      animation: pop .3s
+    }
+
+    #sad .e {
+      font-size: 4.5rem
+    }
+
+    #sad .t {
+      font-size: 1.2rem;
+      margin: 10px 0 16px
+    }
+
+    #result {
+      font-size: clamp(1.3rem, 5vw, 2rem);
+      min-height: 3em
+    }
+
+    .bit {
+      position: fixed;
+      top: -30px;
+      font-size: 1.6rem;
+      pointer-events: none;
+      z-index: 60;
+      animation: fall linear forwards
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(540deg);
+        opacity: .8
+      }
+    }
+
+    .burst {
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      font-size: 2rem;
+      pointer-events: none;
+      z-index: 60;
+      animation: boom 1.1s ease-out forwards
+    }
+
+    @keyframes boom {
+      to {
+        transform: translate(var(--x), var(--y)) rotate(360deg) scale(.4);
+        opacity: 0
+      }
+    }
+
+    #mute {
+      position: fixed;
+      top: 12px;
+      right: 12px;
+      z-index: 70;
+      padding: 10px 14px;
+      font-size: 1.2rem;
+      display: none
+    }
+
+    .from {
+      font-size: 1.3rem;
+      font-weight: bold
+    }
+
+    #yt {
+      position: fixed;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
+      border: 0
+    }
+  </style>
+</head>
+
+<body>
+  <button id="mute" onclick="toggleMusic()">🔊</button>
+
+  <!-- PAGE 1 -->
+  <section class="page active" id="p1">
+    <div class="card">
+      <h1>Heyyy Afeefa 🎀</h1>
+      <p style="margin:14px auto">Pookie, I have a little surprise for you... 🎁<br><br><b>Are you ready to open your
+          wish?</b></p>
+      <div class="btns" style="margin-top:20px">
+        <button class="big" onclick="startMusic();go('p2')">Yes 💖</button>
+        <button class="med" id="no1" onclick="no1()">No</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 2 -->
+  <section class="page" id="p2">
+    <div class="card">
+      <h1>Feefa, ek sawal 🤔</h1>
+      <p style="margin:14px 0 6px"><b>Kya tum meri best friend ho?</b></p>
+      <div class="btns" style="margin-top:20px;min-height:120px">
+        <button class="big" onclick="go('p3')">HAAN 😍</button>
+        <button class="small" id="no2">NAHI</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 3: CAKE -->
+  <section class="page" id="p3">
+    <div class="cake">🎂</div>
+    <h1>Happy Birthday Afeefa 🎉🎈</h1>
+    <button class="med" onclick="go('p4')">Next ➡️</button>
+  </section>
+
+  <!-- PAGE 4: GUESS -->
+  <section class="page" id="p4">
+    <div class="card">
+      <h1>Aaj kisi special ka birthday hai, guess karo kon? 🧐</h1>
+      <div class="btns" style="margin:22px 0">
+        <button class="opt" onclick="guess(true)">Afeefa</button>
+        <button class="opt" onclick="guess(false)">Shakeela</button>
+        <button class="opt" onclick="guess(false)">Rubina</button>
+        <button class="opt" onclick="guess(false)">Shumaila</button>
+      </div>
+      <div id="result"></div>
+      <button class="med" id="nextMsg" style="display:none;margin-top:16px" onclick="go('p5')">Click here to move next
+        💌</button>
+    </div>
+  </section>
+
+  <!-- PAGE 5: MESSAGE -->
+  <section class="page" id="p5">
+    <div class="card">
+      <h1>Afeefa 💕</h1>
+      <p style="margin:16px auto">
+        Happy birthday Afeefa ♥️🎊🥳! .......
+        Aaj bht special Day ha apky Liye ....aur tbh to mere Liye b PTA nhi kyun but h😅...... Sb sy phly apky Liye bht
+        sari duaein Allah apko kush rkhyy, Allah apki hr khuuwaish ko Pura kry, Naseeb achyy kryyy, apki Zindagi mein
+        sukoon lay aur Jo bndy apky sukoon ko khrab krrhy ya Jo b unko apki Zindagi sy cutoff kr deinn......... Apko
+        loyal log Mily aur Jo unloyal Hun wo b aap sy dur ho jay..... Baki ab apki baat ki jay toh Afeefa tbh aap mere
+        Liye pta nhi kyun but bht khas hoo apki hrqty toh koi nhi lakin Apki baaty sarii yad rhtiii....apky muh sy nikly
+        huwy ilfaz chay apky Liye bht aam si baat hi but mere Liye wo bht meaningful Hoti..... Afeefa I swear aj tk apko
+        nhi bola shyd bola b ho lakin Allah Janata ha mere niyaat ki aapky liye positive feelings Hein nikkah ki
+        khuuwaish ha isliye Jo
+        Bolta Hun Sach Bolta hun .....yeh mat sochna k Kuch b prank ha ya jhoot hoskta ya Kuch b Hooo..... Aj na aik
+        baat btata literally Afeefa mtlb dostun k Sath Hun ya jidr b Hun to aksar aisa hota na k samny sy lrkiyan ja rhi
+        Hoti literally afeefa mekn aoni nazry neechy kr deta k apko b mtlb koi dekhta Hoga....blky aik kissa sunaa tha
+        abhi Kuch dino phly ki BAAT ha wo yeh k mein aur mavia thy mrkz mein fries le rhy thy to 2 lrkiyan ay na to mtlb
+        wo le rhi thi to MN ny bola phly hum ay Hein hmy de bhooj lgii huwii thi Sach mein to wo khtii k bat suny hamy
+        phly lene dein naaa....mtlb frank ho k full....to mein kha Sahi h de de unkoo mavia hansny LG gyaa to usky bd na
+        mavia khta rajy line marrhi thi number lett insy mejn kha chl jb tk fries khaty to wo aagy hi jarhi thi na to
+        thori der bd achanak mujhy apka khiyal aagya mtlb mein ny suppose Kiya k aagy aap jarhii ho aur peechy koi aur
+        lrka apko stock krrha ho tohhhh apko Kitna bura lgy ga aur mujhyyy to bht hi bura lgy ga ....udr sy aik kadam
+        aagy nhi gyaaa seedha wapis myr gya......yeh baty isliye nhi bta rha k mein yeh Hun ya WI Hun but wese Dil Kiya
+        mtlb don't ever think k just tym pass krrha ya Kuch b .... Feefa yr ap wo wahid bndii ho jisky aagy meinn chup
+        kr jata mtlb pic py ya vid py ya aisy to wo yr mzak krta rhta ya wese mtlb Dil krrha hota jb aisi koi BAAT Hoti
+        to apko PTA aap sy bagher puchy nhi krta mein..... Aj tk pgc k bahir nhi aya apky ghr ka PTA nhi kiya just bcz
+        of uh bcz aap ny mana Kiya huwaa ..... Kbhi yeh mat sochna k apko mein ignore krha ya Kuch b aisa nhi hota kahin
+        na kahin phnsa hunga ya so rha hunga😅 .....is khas moky mein aik request aik guzarish wo yeh k Afeefa kabhi b
+        chor k na Jana agr ghlti huwi mujhyy Bolna k seedhy hojao ya aagy nhi krna dubara nhi hogaa ...koi b chz ho to
+        please aik dfa ouch Lena Kisi k khny py ya kbhi b na krna please aik dfa soch Lena Mera bs.....Baki Allah Kush
+        rkhy apkoo...... Aur prha Kam kroo bemar ho jaogii orh prh k😅 bolti nhi ho lkin prhtii to bht ho 🤣...... Aur
+        Aik aur baat Mashaallah sy pyari to bht ho aap fineshyt, 10/10 baddie hooo..... Hwaon mein urh rhi na hena🤣
+        zyda na uro Mazak krrha 🙄😋..... Ghussa aya na Chalo PHir Sach hi bolrha apka figure uffff baddies walaa.......
+        Wese chubby hi ha apka figure b ... figure mtlb overall shape..... Not in bad sense but birthday ha sach baat
+        bolni chaiye to wohi bol rha k fineshyt Wala figure ha apkaa 😄.....bakii dressing to jb b dekhii achiiii hi
+        hotiii apkii western mein itna nhi dekha kbhii lkinn wo b theek hi hotiii.... Wohi kr k ana na next week
+        😋😅.....Aur han mere sath badmashi nhi kiya kro mein marta b rhtaa hhn😖….. mere sari baatyn mein bola kroo je
+        hazur jesa aap khy😁😋🤭….. apki aik adat jo mujhyy abhi tk bht best lgtii mtlb achi ha wo yeh k aap jhoot nhi
+        boltii mere sathhh…. Bilal itna khta jhooti ha yeh ha woh h(phly) lakin mn usko khta han sahi h sahi ha bcz ik
+        na aap bolsktii mtlb nhi bolti but kahin bol b leta bnda lakin mere sathhh nhi boltiii aap jhoot ik…. Aur ab
+        mein b nhi bolta last tym wo saif wala jo scene huwa tha aap ny bola tha dubara jhoot nhi bolna usky bd nhi
+        bolaaa…. Aur kkbhi bnda bol b deta choty moty hansany k liye ya jo b lakjn brha jhoot na bolta aur na bolna sirf
+        apky sath bcz jis bndy k sath tym spend krnaaaaa hoo tohhh udr jhoot nhi bolna hota na ….. apko yad ha angloo
+        mein kesyy ghoorta tha apko khud soch k hansta rhtaaa hun🤣 mtlb kitna ajeeb bnda tha mein aap lift hu krati
+        thii aur mein phir b lga rhtaaa thaa lakinn baat to ha k jidr shiddat aur muhabbat sachii ho whan rasty nikl hi
+        aaty mtlb dekho na mn b anglo sy chla gya aap b chlii gye phir kisny socha tha k phir sy aap sy baat hogii ya
+        itni dostii hojay giii😅…. Allah ny rasta bnaya na dekhaaaaa........apart from gapshap feefa dil ki baat bolun
+        to wo yeh k apki baty apky wadyy apkii hr baat mere liye bht meaningfull hoti aur apki baaty many ka dil b
+        krtaa....aby sb choro cig hi dekh looo yrrr😭..... aap ka hukam sir ankhoo py phly b tha aaj b ha aur aagy b rhy
+        ga apky liyee jaan b hazirr ....ab aagy sy yeh mt bolna k plan cancel kr do🥲🤥😅 wo koi nhi krna mn nyy bakii
+        jo bolo sb maany gy ......Birthday girl ho kuch chaiye ho kuch bolna ho jo aaj tk nhi bola wo aaj bol do apky
+        hukam k tameel hogiii aur baat manii jay giii..........Baki hamesha kush rahooo ....aur agr Allah na kry k apki
+        ghum ya dard ki wjh hum bny to hum hi na rhyyyy ......Bakii not as a girl friend or kuch b aisa wesa jo b likha
+        is msg mn wo dil sy likhaaa kuch upr nechy huwa ho to phly sy sorry🥺 usky liyee ......aur aik baat aik baat😋
+        wooo yehhh k I ReallyReally Really Really Really Really Really Really Really Really Really Really Really Really
+        Really Really Really Really Really Really Really Lovee You❤️.......................Ik ghussa aaya hoga ana to
+        nhi chaiey lakin agr aya ho to again sorry lakin aisy dino mn dil ki baaty bol deni chaiye na😉.......At Last
+        Again HAPPY BIRTHDAY AFEEFA🎀!............Any gila any shikwaa koi chz kuch manwana ho toh aaj moka ha inkar nhi
+        karuun ga except plan waliii baat....aur wo bolni b nhi chaiye na yr itna tym hogya bnda milta thora achy sy
+        janta aik dusry ko to acha ha wo b..............Allah apko kush rkhyyy........Ye chota sa msg⬇️ iski trf sy😉
+      </p>
+      <p class="from">From: Zeeshan Raja </p>
+    </div>
+  </section>
+
+  <!-- SAD POPUP -->
+  <div id="sad">
+    <div class="box">
+      <div class="e">🥺💔</div>
+      <div class="t" id="sadText">hawwww 🥺💔</div>
+      <button class="med" onclick="closeSad()">Okay, sorry 🥹</button>
+    </div>
+  </div>
+
+  <script>
+    // ===== Music (YouTube, starts after first click) =====
+    var VIDEO_ID = "0_qt5jJZkco";
+    var musicOn = false, frame = null;
+    function startMusic() {
+      if (frame) return;
+      frame = document.createElement("iframe");
+      frame.id = "yt";
+      frame.allow = "autoplay; encrypted-media";
+      frame.src = "https://www.youtube.com/embed/" + VIDEO_ID + "?autoplay=1&loop=1&playlist=" + VIDEO_ID + "&enablejsapi=1";
+      document.body.appendChild(frame);
+      musicOn = true;
+      document.getElementById("mute").style.display = "block";
+    }
+    function toggleMusic() {
+      if (!frame) return;
+      var cmd = musicOn ? "pauseVideo" : "playVideo";
+      frame.contentWindow.postMessage(JSON.stringify({ event: "command", func: cmd, args: [] }), "*");
+      musicOn = !musicOn;
+      document.getElementById("mute").textContent = musicOn ? "🔊" : "🔇";
+    }
+
+    // ===== Navigation =====
+    function go(id) {
+      document.querySelectorAll(".page").forEach(function (p) { p.classList.remove("active") });
+      document.getElementById(id).classList.add("active");
+      window.scrollTo(0, 0);
+      no2.style.display = (id === "p2") ? "" : "none";
+      if (id === "p3") confettiRain();
+    }
+
+    // ===== Sad popup =====
+    function sad(text) {
+      startMusic();
+      document.getElementById("sadText").textContent = text || "hawwww 🥺💔";
+      document.getElementById("sad").classList.add("show");
+    }
+    function closeSad() { document.getElementById("sad").classList.remove("show"); }
+
+    // ===== Page 1: No button =====
+    function no1() {
+      sad("hawwww 🥺💔  Even if you're not ready, you have to press Yes 🤥🙄");
+      var b = document.getElementById("no1");
+      b.style.display = "none";
+    }
+
+    // ===== Page 2: runaway NAHI =====
+    var no2 = document.getElementById("no2");
+    function run(e) {
+      if (e) { if (e.preventDefault) e.preventDefault(); if (e.stopPropagation) e.stopPropagation(); }
+      if (no2.parentNode !== document.body) document.body.appendChild(no2);
+      no2.style.position = "fixed";
+      no2.style.zIndex = "40";
+      var vw = document.documentElement.clientWidth;
+      var vh = window.innerHeight;
+      var maxX = Math.max(10, vw - no2.offsetWidth - 10);
+      var maxY = Math.max(10, vh - no2.offsetHeight - 10);
+      no2.style.left = (5 + Math.random() * maxX) + "px";
+      no2.style.top = (5 + Math.random() * maxY) + "px";
+    }
+    ["mouseover", "pointerenter", "pointerdown", "touchstart", "mousedown"].forEach(function (ev) {
+      no2.addEventListener(ev, run, { passive: false });
+    });
+    no2.addEventListener("click", function (e) { e.preventDefault(); sad("hawwww 🥺💔"); run(); });
+
+    // ===== Page 4: guess =====
+    function guess(ok) {
+      var r = document.getElementById("result");
+      if (ok) {
+        r.textContent = "Happy Birthday meri Cutieeee! 🥳💖";
+        popper();
+        document.getElementById("nextMsg").style.display = "inline-block";
+      } else {
+        r.textContent = "itna marun naaaa apko 😡";
+      }
+    }
+
+    // ===== Confetti =====
+    function popper() {
+      var items = ["🎉", "🎊", "✨", "💖", "🎈", "🌸"];
+      for (var i = 0; i < 36; i++) {
+        var s = document.createElement("span");
+        s.className = "burst";
+        s.textContent = items[Math.floor(Math.random() * items.length)];
+        var a = Math.random() * Math.PI * 2, d = 120 + Math.random() * Math.min(window.innerWidth, 500) / 1.5;
+        s.style.setProperty("--x", Math.cos(a) * d + "px");
+        s.style.setProperty("--y", Math.sin(a) * d + "px");
+        document.body.appendChild(s);
+        setTimeout((function (el) { return function () { el.remove() } })(s), 1200);
+      }
+    }
+    function confettiRain() {
+      var items = ["🎈", "🎀", "💖", "✨", "🌸", "🎉"];
+      for (var i = 0; i < 30; i++) {
+        var s = document.createElement("span");
+        s.className = "bit";
+        s.textContent = items[Math.floor(Math.random() * items.length)];
+        s.style.left = Math.random() * 100 + "vw";
+        s.style.animationDuration = (3 + Math.random() * 3) + "s";
+        s.style.animationDelay = Math.random() * 1.5 + "s";
+        document.body.appendChild(s);
+        setTimeout((function (el) { return function () { el.remove() } })(s), 7000);
+      }
+    }
+  </script>
+</body>
+
+</html>
